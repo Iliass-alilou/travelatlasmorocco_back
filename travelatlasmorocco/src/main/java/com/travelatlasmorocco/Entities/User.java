@@ -1,9 +1,11 @@
 package com.travelatlasmorocco.Entities;
 import javax.persistence.Id;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
-@Entity(name = "users")
-public class UserEntity {
+@Table
+@Entity
+public class User {
     @Id
     private long id;
     private String userId;
