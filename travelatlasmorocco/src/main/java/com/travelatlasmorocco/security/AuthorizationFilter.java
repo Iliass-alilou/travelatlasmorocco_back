@@ -13,13 +13,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import io.jsonwebtoken.Jwts;
-public class AuthorizationFilter extends BasicAuthenticationFilter{
+
+public class AuthorizationFilter extends BasicAuthenticationFilter {
+
     AuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
     }
+
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-        // play role of midllware
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)// play
+        // role
+        // of
+        // midllware
             throws IOException, ServletException {
 
         String header = request.getHeader(SecurityConstants.HEADER_STRING);
@@ -52,4 +57,5 @@ public class AuthorizationFilter extends BasicAuthenticationFilter{
 
         return null;
     }
+
 }
