@@ -2,45 +2,28 @@ package com.travelatlasmorocco.entities;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import java.util.Objects;
-
+import javax.persistence.*;
+import java.io.Serializable;
 @Getter
 @Setter
 @Entity(name = "user")
-public class UserEntity {
+public class UserEntity  implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String userId;
     private String firstName;
     private String lastName;
+    @Column(unique = true,  nullable = false ,length = 120)
+    private String email;
+    @Column(nullable = true)
     private Boolean admin = true;
+    @Column(nullable = true)
+    private String emailVerificationToken;
+    @Column(nullable = false )
+    private String ecryptyPassword;
+    @Column(nullable = false)
+    private Boolean emailVerificationStatus = false;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserEntity)) return false;
-        UserEntity that = (UserEntity) o;
-        return getId() == that.getId() && Objects.equals(getUserId(), that.getUserId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getAdmin(), that.getAdmin());
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getUserId(), getFirstName(), getLastName(), getAdmin());
-    }
-
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", admin=" + admin +
-                '}';
-    }
 }
