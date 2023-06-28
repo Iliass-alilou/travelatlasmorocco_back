@@ -1,5 +1,4 @@
 package com.travelatlasmorocco.security;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.travelatlasmorocco.SpringApplicationContext;
 import com.travelatlasmorocco.requests.UserLoginRequest;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.travelatlasmorocco.security.SecurityConstants;
 import com.travelatlasmorocco.services.UserService;
 import com.travelatlasmorocco.shared.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +21,23 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+    @Autowired
+    UserService userService;
+
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationFilter(AuthenticationManager authenticationManager) {
+
         this.authenticationManager = authenticationManager;
     }
+
     // this filter works automaticly when the user enter to /user
 
     @Override
@@ -79,4 +85,5 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         res.getWriter().write("{\"token\": \"" + token + "\", \"id\": \""+ userDto.getUserId() + "\"}");
 
     }
+
 }
