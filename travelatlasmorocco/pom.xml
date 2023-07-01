@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.travelatlasmorocco</groupId>
-	<artifactId>travelatlasmorocco_backend</artifactId>
+	<artifactId>travelatlasmorocco</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>travelatlasmorocco</name>
 	<description>travel atlas morocco is a project for tourism in morocco</description>
